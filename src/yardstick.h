@@ -58,6 +58,10 @@ class Yardstick
         //
         struct timespec avg();
 
+		//Return the standard deviation across all trials
+		//
+		double std_dev();
+
         //
         // Return the standard deviation of the current time trials
         //

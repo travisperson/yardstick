@@ -2,6 +2,10 @@
 #include <iostream>
 #include <iomanip>
 
+double toSeconds(struct timespec ts)
+{
+	return ts.tv_sec + (ts.tv_nsec / 1000000000);
+}
 
 struct timespec
 timespec_diff(struct timespec start, struct timespec end)
@@ -105,6 +109,20 @@ Yardstick::end()
     return elapsed;
 }
 
+double Yardstick::std_dev()
+{
+	double average = toSeconds(avg());
+	double sumDev = 0;
+	for(std::list<struct timespec>::iterator i = time_trials.begin(); i != time_trials.end();i++)
+	{
+		sumDev += pow(toSeconds((*i)) - average,2);
+	}
+
+	sumDev /= time_trials.size()-1;
+	
+	return sqrt(sumDev);
+}
+
 void Yardstick::stop()
 {
 	running = false;
@@ -116,8 +134,9 @@ Yardstick::avg()
    return timespec_avg(time_trials);
 }
 
+
 void Yardstick::printTrials()
-{		
+{
 	int count = 0;
 	cout << "Test: " << testName << "\n";
 	cout << "Trials:\t\tSeconds\n";
