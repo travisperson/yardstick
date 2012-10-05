@@ -4,6 +4,11 @@
 #include <ctime>
 #include <cmath>
 #include <list>
+#include <iostream>
+#include <string>
+
+using std::string;
+using std::cout;
 
 class Yardstick
 {
@@ -34,23 +39,37 @@ class Yardstick
         
         //
         // End the current run
+        // and push back a trial
         //
         // Conditional: running == true
         //
         struct timespec end();
 
+		//
+		// End the current run
+		// and dont push back a tial
+		//
+		// Conditional: running == true
         //
+        void stop();
+
         // Return an average of all the current time trials
         //
         struct timespec avg();
+
+		//Return the standard deviation across all trials
+		//
+		struct timespec std_dev();
 
         //
         // Return the standard deviation of the current time trials
         //
         //struct timespec std_dev();
 
+		//
+		// Print out formatted informationg about the trials.
+		//
     private:
-
         bool running; 
         bool paused;
         std::list<struct timespec> time_trials; 
