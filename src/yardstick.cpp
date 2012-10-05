@@ -64,17 +64,10 @@ timespec_round_avg ( struct timespec ts_avg, int runs )
 
 Yardstick::Yardstick()
 {
-	testName = "unnamed test";
     paused  = false;
     running = false;
 }
 
-Yardstick::Yardstick(string name)
-{
-	paused = false;
-	running = false;
-	testName = name;
-}
 
 Yardstick::~Yardstick()
 {
@@ -137,21 +130,3 @@ Yardstick::avg()
 }
 
 
-void Yardstick::printTrials()
-{
-	int count = 0;
-	cout << "Test: " << testName << "\n";
-	cout << "Trials:\t\tSeconds\n";
-	for(std::list<struct timespec>::iterator i = time_trials.begin();i != time_trials.end();i++, count++)
-	{
-		cout << count << "\t\t" << (*i).tv_sec << "." << std::setfill('0') << std::setw(9) << (*i).tv_nsec << "\n";
-	}
-	struct timespec t = avg();
-}
-
-void Yardstick::printAverage()
-{
-	struct timespec t = avg();
-	cout << "Test: " << testName << "\n";
-	cout << "Average: " << t.tv_sec << "." << std::setfill('0') << std::setw(9) <<  t.tv_nsec << "\n";
-}

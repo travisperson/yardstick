@@ -14,7 +14,6 @@ class Yardstick
 {
     public:
         Yardstick();
-		Yardstick(string name);
         ~Yardstick();
         
         //
@@ -60,7 +59,7 @@ class Yardstick
 
 		//Return the standard deviation across all trials
 		//
-		double std_dev();
+		struct timespec std_dev();
 
         //
         // Return the standard deviation of the current time trials
@@ -70,10 +69,7 @@ class Yardstick
 		//
 		// Print out formatted informationg about the trials.
 		//
-		void printTrials();
-		void printAverage();
     private:
-		string testName;
         bool running; 
         bool paused;
         std::list<struct timespec> time_trials; 
