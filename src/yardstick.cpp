@@ -104,7 +104,8 @@ Yardstick::end()
     return elapsed;
 }
 
-double Yardstick::std_dev()
+struct timespec
+Yardstick::std_dev()
 {
 	double average = toSeconds(avg());
 	double sumDev = 0;
@@ -115,7 +116,11 @@ double Yardstick::std_dev()
 
 	sumDev /= time_trials.size()-1;
 	
-	return sqrt(sumDev);
+	sumDev = sqrt(sumDev);
+	struct timespec stddev;
+	stddev.tv_sec = (int)sumDev;
+	stddev.tv_nsec = (sumDev - stddev.tv_sec) * BILLION;
+	return stddev;
 }
 
 void Yardstick::stop()
