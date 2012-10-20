@@ -1,3 +1,4 @@
+// vim: noai ts=4 sw=4 et:
 #ifndef __YARDSTICK_H__
 #define __YARDSTICK_H__
 
@@ -45,11 +46,11 @@ class Yardstick
         //
         struct timespec end();
 
-		//
-		// End the current run
-		// and dont push back a tial
-		//
-		// Conditional: running == true
+        //
+        // End the current run
+        // and dont push back a tial
+        //
+        // Conditional: running == true
         //
         void stop();
 
@@ -57,18 +58,20 @@ class Yardstick
         //
         struct timespec avg();
 
-		//Return the standard deviation across all trials
-		//
-		struct timespec std_dev();
+        //Return the standard deviation across all trials
+        //
+
+        struct timespec std_dev();
 
         //
         // Return the standard deviation of the current time trials
         //
         //struct timespec std_dev();
 
-		//
-		// Print out formatted informationg about the trials.
-		//
+        //
+        // Print out formatted informationg about the trials.
+        //
+
     private:
         bool running; 
         bool paused;
