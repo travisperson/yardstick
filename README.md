@@ -1,4 +1,4 @@
 yardstick
 =========
 
-A c++ benchmark & profiling library.
+A c++ benchmark &amp; profiling library.
